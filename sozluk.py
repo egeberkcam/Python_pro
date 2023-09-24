@@ -6,6 +6,8 @@ for i in range(5):
             "SHEESH": "Onaylamamak",
             "CREEPY": "Korkunç",
             "AGGRO": "Agresifleşmek/sinirlenmek"
+            "GG": "iyi oyun anlamında kullanılır"
+            "NT": "Güzel hareket/iyi denemeydi anlamında kullanılır"
             }
     
     word = input("Anlamadığınız bir kelime yazın (hepsini büyük harflerle yazın!): ")
