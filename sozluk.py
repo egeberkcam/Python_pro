@@ -8,6 +8,7 @@ for i in range(5):
             "AGGRO": "Agresifleşmek/sinirlenmek"
             "GG": "iyi oyun anlamında kullanılır"
             "NT": "Güzel hareket/iyi denemeydi anlamında kullanılır"
+            "FF": "Karşı takıma oyunu terket demek için kullanılır"
             }
     
     word = input("Anlamadığınız bir kelime yazın (hepsini büyük harflerle yazın!): ")
