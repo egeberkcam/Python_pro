@@ -1,0 +1,86 @@
+import discord
+from discord.ext import commands
+import riffy1
+
+intents = discord.Intents.default()
+intents.message_content = True
+
+bot = commands.Bot(command_prefix='$', intents=intents)
+
+
+@commands.command(name="playplaylist")
+async def playplaylist(self, ctx, url):
+    if not ctx.author.voice:
+        await ctx.send("Ses kanalında bulunmalısın!")
+        return
+
+    channel = ctx.author.voice.channel
+
+    await self.riff.play_playlist(channel.id, url)
+
+    await ctx.send(f"Oynatma listesi çalıyor: {url}")
+    
+
+@commands.command(name="play")
+async def play(self, ctx, *, query):
+    if not ctx.author.voice:
+        await ctx.send("Ses kanalında bulunmalısın!")
+        return
+
+        channel = ctx.author.voice.channel
+
+        await self.riff.play(channel.id, query)
+
+        await ctx.send(f"**{query}** çalıyor.")
+
+@commands.command(name="pause")
+async def pause(self, ctx):
+    if not ctx.voice_client:
+        return
+
+    await self.riff.pause(ctx.author.voice.channel.id)
+
+    await ctx.send("Müzik duraklatıldı.")
+
+@commands.command(name="resume")
+async def resume(self, ctx):
+    if not ctx.voice_client:
+        return
+
+    await self.riff.resume(ctx.author.voice.channel.id)
+
+    await ctx.send("Müzik devam ediyor.")
+
+@commands.command(name="stop")
+async def stop(self, ctx):
+    if not ctx.voice_client:
+        return
+
+    await self.riff.stop(ctx.author.voice.channel.id)
+
+    await ctx.send("Müzik durduruldu.")
+
+@commands.command(name="skip")
+async def skip(self, ctx):
+    if not ctx.voice_client:
+        return
+
+    await self.riff.skip(ctx.author.voice.channel.id)
+
+    await ctx.send("Şarkı atlandı.")
+
+@commands.command(name="shuffle")
+async def shuffle(self, ctx):
+    if not ctx.voice_client:
+        return
+
+    await self.riff.shuffle(ctx.author.voice.channel.id)
+
+    await ctx.send("Şarkılar karıştırıldı.")
+
+
+def setup(bot):
+    bot.add_cog(Music(bot))
+
+
+bot.run("MTE4MDUwNTE2NjQ0NTgxMzgyMA.GVZpbb.9Hh-rKRcMOnsbYgoy_ViuM3mwse5v_sp8_JUoE")
